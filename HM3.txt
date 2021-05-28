@@ -1,0 +1,75 @@
+1. Управление пользователями:
+
+a) создать пользователя, используя утилиту useradd;
+
+	sudo useradd -s /bin/bash -d /home/i724 -m i724
+	sudo passwd i724
+	
+b) удалить пользователя, используя утилиту userdel;
+
+	sudo userdel -r i724
+
+c) создать пользователя в ручном режиме.
+
+	sudo adduser i724
+    
+2. Управление группами:
+
+a) создать группу с использованием утилит и в ручном режиме;
+
+	sudo groupadd i724
+	sudo addgroup team_i724
+
+b) попрактиковаться в смене групп у пользователей;
+
+	sudo usermod -G team_i724 i000000
+	sudo usermod -G sudo i724
+
+	    или
+
+	sudo usermod -g team_i724 i000000
+	sudo usermod -g sudo i724
+
+c) добавить пользователя в группу, не меняя основной;
+
+	sudo usermod -aG team_i724 i000000
+	sudo usermod -aG sudo i724
+
+d) удалить пользователя из группы.
+
+	sudo usermod -R team_i724 i000000
+	sudo usermod -R sudo i724
+
+3. Создать пользователя с правами суперпользователя. Сделать так, чтобы sudo не требовал пароль для выполнения команд.
+
+	sudo useradd -ou 0 -g 0 Alex
+
+	 sudoedit /etc/sudoers в файл записать Alex  ALL=(ALL) NOPASSWD:ALL
+
+	 или 
+
+	 sudo nano /etc/sudoers.d/Alex
+	 Alex  ALL=(ALL) NOPASSWD:ALL
+	 chmod 644 /etc/sudoers.d/Alex
+	
+
+
+4. * Используя дополнительные материалы, выдать одному из созданных пользователей право на выполнение ряда команд, требующих прав суперпользователя (команды выбираем на своё усмотрение).
+
+	sudoedit /etc/sudoers в файл записать Alex  ALL=(ALL) NOPASSWD:/sbin/shutdown -h now, /usr/bin/apt-get update, /usr/bin/apt-get upgrade
+	разрешение пользователю выключать систему, выполнять обновление системы
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
